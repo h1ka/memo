@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,16 +34,18 @@ public class NoteController {
         return "create";
     }
     @PostMapping(value = "/create")
-    public String registration(@ModelAttribute("noteForm") Note noteForm, BindingResult bindingResult, Model model) throws Exception {
+    public String registration(@Valid @ModelAttribute("noteForm") Note noteForm, BindingResult bindingResult, Model model) throws Exception {
+        if (bindingResult.hasErrors()) {
+            return "create";
+        }
         noteForm.setCreateDate(new Date());
-        byte[] bytes = new byte[1024];
         try {
-            bytes = SSLService.gen(noteForm.getName());
+            byte[]  bytes = SSLService.gen(noteForm.getName());
+            noteForm.setPhoto(bytes);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        noteForm.setPhoto(bytes);
         String username = securityService.findLoggedInUsername();
         User user = userService.findByUsername(username);
         noteForm.setUser(user);

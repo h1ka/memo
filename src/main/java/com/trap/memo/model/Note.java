@@ -1,10 +1,16 @@
 package com.trap.memo.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class Note {
     private Long id;
+    @NotNull
+    @Size(min=4, max=30)
     private String name;
+    @NotNull
+    @Size(min=1, max=250)
     private String body;
     private Date createDate;
     private User user;

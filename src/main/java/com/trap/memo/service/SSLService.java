@@ -6,7 +6,6 @@ import java.net.URL;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import java.util.Arrays;
 
 public class SSLService {
 
@@ -28,8 +27,7 @@ public class SSLService {
             InputStream inputStream = conn.getInputStream();
             byte[] bytes = new byte[1024];
             inputStream.read(bytes);
-            System.out.println(Arrays.toString(bytes));
-            System.out.println(conn.getResponseCode());
+            System.out.println("connection identicon code: "+ conn.getResponseCode());
             conn.disconnect();
             return bytes;
         }

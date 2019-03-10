@@ -4,20 +4,12 @@ import com.trap.memo.model.Note;
 import com.trap.memo.model.User;
 import com.trap.memo.repository.NoteRepository;
 import com.trap.memo.repository.UserRepository;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.ResourceHttpMessageConverter;
 import org.springframework.stereotype.Service;
 
-import javax.net.ssl.HttpsURLConnection;
-import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.Arrays;
+
 import java.util.List;
 
-import static java.lang.System.in;
 
 
 @Service

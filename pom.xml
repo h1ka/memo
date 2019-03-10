@@ -16,13 +16,11 @@
 </properties>
 
 <dependencies>
-    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-io -->
     <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-io</artifactId>
-        <version>1.3.2</version>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>5.4.1.Final</version>
     </dependency>
-
     <dependency>
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>

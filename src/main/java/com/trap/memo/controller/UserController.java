@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 
 
 @Controller
@@ -37,10 +38,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-        System.out.println(userForm);
-
-//        userValidator.validate(userForm, bindingResult);
+    public String registration(@Valid @ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
+        userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "registration";
@@ -49,7 +51,7 @@ public class UserController {
 
         securityService.autoLogin(userForm.getUsername(), userForm.getConfirmPassword());
 
-        return "redirect:/welcome";
+        return "redirect:/notes";
     }
 //
     @RequestMapping(value = "/login", method = RequestMethod.GET)
