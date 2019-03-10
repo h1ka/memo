@@ -101,13 +101,12 @@ public class NoteController {
     @ResponseBody
     public byte[] downloadPhoto(@PathVariable("id") Long id) {
         Note note = noteService.getOne(id);
-        byte[] photo = note.getPhoto();
 
         //        if (note.getPhoto() != null) {
 //            logger.info("Downloading photo for id: {} with size: {}", note.getId(),
 //                    singer.getPhoto().length);
 //        }
 
-        return photo;
+        return note.getPhoto();
     }
 }

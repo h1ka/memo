@@ -18,12 +18,7 @@ public class SSLService {
 
             URL url = new URL(urlStr);
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
-            conn.setHostnameVerifier(new HostnameVerifier() {
-                @Override
-                public boolean verify(String arg0, SSLSession arg1) {
-                    return true;
-                }
-            });
+            conn.setHostnameVerifier((arg0, arg1) -> true);
             InputStream inputStream = conn.getInputStream();
             byte[] bytes = new byte[1024];
             inputStream.read(bytes);

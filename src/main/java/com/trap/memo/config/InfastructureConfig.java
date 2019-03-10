@@ -1,7 +1,6 @@
 package com.trap.memo.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.apache.commons.dbcp2.managed.BasicManagedDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

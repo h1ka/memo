@@ -2,16 +2,14 @@ package com.trap.memo.model;
 
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 public class User {
     private Long id;
-    @NotNull
     private String username;
-    @NotNull
     private String password;
-    @NotNull
     private String confirmPassword;
     private Set<Role> roles;
     private List<Note> notes;

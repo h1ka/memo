@@ -23,22 +23,29 @@ public class UserValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
         User user = (User) o;
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "Required");
 
+        if (user.getUsername().isEmpty()){
+            errors.rejectValue("username", "Required");
+        } else
+        if (user.getPassword().isEmpty()){
+            errors.rejectValue("password", "Required");
+        } else
+        if (user.getConfirmPassword().isEmpty()){
+            errors.rejectValue("confirmPassword", "Required");
+        } else
         if (user.getUsername().length() < 4 || user.getUsername().length() > 32) {
             errors.rejectValue("username", "Size.userForm.username");
-        }
+        } else
         if (userService.findByUsername(user.getUsername()) != null) {
             errors.rejectValue("username", "Duplicate.userForm.username");
-        }
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "Required");
+
+        } else
         if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
             errors.rejectValue("password", "Size.userForm.password");
-        }
+        } else
         if (!user.getConfirmPassword().equals(user.getPassword())) {
 
             errors.rejectValue("confirmPassword", "Different.userForm.password");
-
         }
     }
 }
