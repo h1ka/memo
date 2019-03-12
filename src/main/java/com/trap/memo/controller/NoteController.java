@@ -28,13 +28,14 @@ public class NoteController {
     @Autowired
     UserService userService;
 
+
     @GetMapping(value = "/create")
-    public String registration(Model model) {
+    public String createNote(Model model) {
         model.addAttribute("noteForm", new Note());
         return "create";
     }
     @PostMapping(value = "/create")
-    public String registration(@Valid @ModelAttribute("noteForm") Note noteForm, BindingResult bindingResult, Model model) throws Exception {
+    public String createNote(@Valid @ModelAttribute("noteForm") Note noteForm, BindingResult bindingResult, Model model) throws Exception {
         if (bindingResult.hasErrors()) {
             return "create";
         }

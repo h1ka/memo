@@ -7,10 +7,10 @@ import java.util.Date;
 public class Note {
     private Long id;
     @NotNull
-    @Size(min=4, max=30)
+    @Size(min = 2,max = 32)
     private String name;
     @NotNull
-    @Size(min=1, max=250)
+    @Size(min = 2,max = 250)
     private String body;
     private Date createDate;
     private User user;
