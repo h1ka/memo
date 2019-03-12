@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration( @ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+    public String registration(@Valid @ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -50,7 +50,6 @@ public class UserController {
 
         return "redirect:/notes";
     }
-//
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
         if (error != null) {

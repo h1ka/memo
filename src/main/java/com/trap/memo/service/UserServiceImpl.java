@@ -2,7 +2,6 @@ package com.trap.memo.service;
 
 import com.trap.memo.model.Role;
 import com.trap.memo.model.User;
-import com.trap.memo.repository.NoteRepository;
 import com.trap.memo.repository.RoleRepository;
 import com.trap.memo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +40,9 @@ public class UserServiceImpl implements UserService{
         roleSet.add(role);
         user.setRoles(roleSet);
         return user;
+    }
+    public boolean isSuchUserExist(String username){
+        return userRepository.isSuchUserExist(username);
     }
 
 }

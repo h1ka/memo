@@ -5,7 +5,6 @@ import com.trap.memo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 
@@ -36,15 +35,13 @@ public class UserValidator implements Validator {
         if (user.getUsername().length() < 4 || user.getUsername().length() > 32) {
             errors.rejectValue("username", "Size.userForm.username");
         } else
-        if (userService.findByUsername(user.getUsername()) != null) {
+        if (userService.isSuchUserExist(user.getUsername())) {
             errors.rejectValue("username", "Duplicate.userForm.username");
-
         } else
         if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
             errors.rejectValue("password", "Size.userForm.password");
         } else
         if (!user.getConfirmPassword().equals(user.getPassword())) {
-
             errors.rejectValue("confirmPassword", "Different.userForm.password");
         }
     }

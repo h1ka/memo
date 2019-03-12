@@ -23,6 +23,16 @@ public class JDBCUserRepository implements UserRepository {
         User user = jdbcTemplate.queryForObject(sql, new UserMapper(), username);
         return user;
     }
+    @Transactional(readOnly = true)
+    public boolean isSuchUserExist(String username){
+        String sql = "select count(*) from users where username = ?";
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, username);
+        if (count==0){
+            return false;
+        }
+        else
+            return true;
+    }
 
     @Override
     @Transactional
